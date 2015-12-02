@@ -1,0 +1,40 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.hyaslide {
+  height: 100%;
+  font-size: 32px;
+  background: #222;
+  background-color: #222;
+  color: #fff;
+}
+
+.slide {
+  position: absolute;
+  width: 960px;
+  height: 700px;
+  margin: 0 auto;
+}
+
+.page {
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  width: 100%;
+}
+
+h1 {
+  font-size: 1.6em;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.4em;
+  text-align: center;
+}
