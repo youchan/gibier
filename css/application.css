@@ -7,6 +7,10 @@ body {
   margin: 0;
 }
 
+::selection {
+  background: #770;
+}
+
 .hyaslide {
   height: 100%;
   font-size: 32px;
@@ -22,11 +26,50 @@ body {
   margin: 0 auto;
 }
 
-.page {
+.wrap-page {
+  position: absolute;
+  width: 960px;
+  height: 700px;
+  margin: 0 auto;
+  color: #fff;
+  background-color: #222;
+  margin-bottom: 60px;
+  page-break-after: always;
+}
+
+.print {
+}
+
+.slide .page {
   top: 50%;
   transform: translateY(-50%);
   position: absolute;
   width: 100%;
+}
+
+.page code {
+  font-size: 0.8em;
+}
+
+
+.page h3 img {
+  width: 1.2em;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.page h4 img {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.page img {
+  width: 1em;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 h1 {
@@ -37,4 +80,112 @@ h1 {
 h2 {
   font-size: 1.4em;
   text-align: center;
+}
+
+h3 {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+h4 {
+  font-size: 1.0em;
+  text-align: center;
+}
+
+.page ul {
+  list-style-image: url('../images/sushidot_bulet.png');
+}
+
+.page ul ul {
+  list-style-image: url('../images/sushidot2_bulet.png');
+  font-size: 0.9em;
+}
+
+.page li {
+  padding-left: 16px;
+}
+
+.page .author {
+  text-align: right;
+  padding-right: 20%;
+}
+
+a:link {
+  color: #cee;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #cee;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #cca;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #cee;
+  text-decoration: none;
+}
+
+.track-field {
+  position: absolute;
+  bottom: 1em;
+  width: 100%;
+  height: 70px;
+}
+
+.track-field .avatar {
+  position: absolute;
+  left: 2%;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  border-radius: 4px;
+}
+
+.track-field .flag {
+  position: absolute;
+  width: 30px;
+  height: 60px;
+  background-image: url("../images/flag.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 900;
+}
+
+.track-field .matz {
+  background-image: url("../images/matz.jpg");
+  z-index: 1000;
+}
+
+.track-field .youchan {
+  background-image: url("../images/youchan.jpg");
+  z-index: 999;
+  top: 30px;
+}
+
+.footer .title {
+  position: absolute;
+  bottom: 4px;
+  left: 16px;
+  margin: 0;
+  font-size: 0.6em;
+  color: #888;
+}
+
+.footer .powered-by {
+  position: absolute;
+  bottom: 4px;
+  right: 16px;
+  margin: 0;
+  font-size: 0.6em;
+  color: #888;
+}
+
+.footer .powered-by .hyalite {
+  color: #ee8;
+  font-weight: bold;
 }

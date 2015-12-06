@@ -1,5 +1,3 @@
-require 'browser/interval'
-
 module Hyaslide
   class PageBase
     include Hyalite::Component

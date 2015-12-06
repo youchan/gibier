@@ -1,6 +1,7 @@
 require 'bundler'
 Bundler.require
 
+require 'rouge'
 require 'fssm'
 require 'eventmachine'
 require 'redcarpet'
@@ -8,7 +9,7 @@ require_relative './render_hyaslide'
 
 class SlideLoader
   def self.load_slide
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::Hyaslide.new)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::Hyaslide, fenced_code_blocks: true)
     File.open("data/pages.rb", "w+") do |f|
       data = File.read("data/slide.md")
       f.write markdown.render(data)
@@ -33,7 +34,10 @@ SlideLoader.new.run
 run Opal::Server.new { |s|
   s.append_path 'app'
   s.append_path 'data'
-  s.append_path '../../hyalite/client'
+  s.append_path 'images'
+  s.append_path 'css'
+  s.append_path 'fonts'
+  #s.append_path '../../hyalite/client'
 
   s.debug = true
   s.main = 'application'

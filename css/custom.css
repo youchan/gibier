@@ -1,0 +1,91 @@
+.page p.icon {
+  margin: 0;
+  position: absolute;
+  top: 5.7em;
+  left: 25em; 
+}
+
+.page p.icon img {
+  width: 3em;
+}
+
+.page .ruby {
+  text-align: center;
+}
+
+.page .ruby img {
+  width: 5em;
+}
+
+.page h4 img.java-to-ruby {
+  width: 10em;
+}
+
+.page p.ubiregi-logo {
+  margin: 0;
+  position: absolute;
+  top: 1.4em;
+  left: 10.5em; 
+}
+
+.page p.ubiregi-logo img {
+  width: 1.5em;
+  border-radius: 8px;
+}
+
+.page p.ubiregi-ipad {
+  position: absolute;
+  top: 4em;
+  left: 18em;
+  margin: 0;
+  transform: rotate(-12deg);
+}
+
+.page p.ubiregi-ipad img {
+  width: 10em;
+}
+
+.page p.dashboard {
+  position: absolute;
+  top: 4em;
+  left: 17em;
+  margin: 0;
+}
+
+.page p.dashboard img {
+  width: 12em;
+}
+
+.page p.space {
+  height: 200px;
+}
+
+.page img.hyalite {
+  width: 60%;
+}
+
+.page .opal {
+  text-align: center;
+}
+
+.page .opal img {
+  width: 5em;
+}
+
+.page .react {
+  text-align: center;
+}
+
+.page .react img {
+  width: 5em;
+}
+
+.page img.virtual-dom {
+  width: 100%;
+}
+
+.page .small {
+  margin-bottom: 0;
+  font-size: 0.8em;
+  color: yellowgreen;
+}
