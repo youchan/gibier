@@ -110,7 +110,7 @@ module Hyaslide
 
       case @state[:mode]
       when :slide
-        div(nil,
+        div({className: 'background'},
           div({
             className: 'slide',
             style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},

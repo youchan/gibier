@@ -14,6 +14,10 @@ body {
 .hyaslide {
   height: 100%;
   font-size: 32px;
+}
+
+.hyaslide .background {
+  height: 100%;
   background: #222;
   background-color: #222;
   color: #fff;
@@ -27,17 +31,19 @@ body {
 }
 
 .wrap-page {
-  position: absolute;
   width: 960px;
   height: 700px;
   margin: 0 auto;
-  color: #fff;
-  background-color: #222;
+  color: #000;
+  background-color: #fff;
   margin-bottom: 60px;
   page-break-after: always;
 }
 
 .print {
+  background: #fff;
+  background-color: #fff;
+  color: #000;
 }
 
 .slide .page {

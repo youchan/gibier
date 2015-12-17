@@ -1,7 +1,7 @@
 .page p.icon {
   margin: 0;
-  position: absolute;
-  top: 5.7em;
+  position: relative;
+  top: -3.6em;
   left: 25em; 
 }
 
@@ -23,8 +23,8 @@
 
 .page p.ubiregi-logo {
   margin: 0;
-  position: absolute;
-  top: 1.4em;
+  position: relative;
+  top: -2.8em;
   left: 10.5em; 
 }
 
@@ -34,8 +34,8 @@
 }
 
 .page p.ubiregi-ipad {
-  position: absolute;
-  top: 4em;
+  position: relative;
+  top: -10em;
   left: 18em;
   margin: 0;
   transform: rotate(-12deg);
@@ -46,18 +46,14 @@
 }
 
 .page p.dashboard {
-  position: absolute;
-  top: 4em;
+  position: relative;
+  top: -6em;
   left: 17em;
   margin: 0;
 }
 
 .page p.dashboard img {
   width: 12em;
-}
-
-.page p.space {
-  height: 200px;
 }
 
 .page img.hyalite {
