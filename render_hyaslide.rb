@@ -1,6 +1,5 @@
 require 'unindent'
 require 'rouge'
-require_relative './jsx'
 
 class String
   def escape
@@ -169,8 +168,6 @@ EOD
                   Rouge::Lexers::Ruby.new
                 when 'javascript'
                   Rouge::Lexers::Javascript.new
-                when 'jsx'
-                  Rouge::Lexers::EmbeddedJSX.new
                 else
                   Rouge::Lexers::PlainText.new
                 end
