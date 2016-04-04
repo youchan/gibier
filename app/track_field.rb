@@ -20,23 +20,23 @@ module Hyaslide
         if el = $document.css(".track-field")[0]
           @width = el.width.to_i
           spend_time = @props[:start] ? Time.now - @props[:start] : 0
-          matz_pos = [(spend_time / @props[:total_time]), 1].min * (@width - 40) * 0.96 + @width * 0.02
-          set_state(matz_pos: matz_pos)
+          rabbit_pos = [(spend_time / @props[:total_time]), 1].min * (@width - 40) * 0.96 + @width * 0.02
+          set_state(rabbit_pos: rabbit_pos)
         end
       end
     end
 
     def render
-      youchan_pos = (@props[:page_number] / @props[:page_count]) * (@width - 40) * 0.96 + @width * 0.02
-      mstyle = {transform: "rotate(#{@state[:tic]?'-':''}7deg)", left: "#{@state[:matz_pos]}px"}
+      turtle_pos = (@props[:page_number] / @props[:page_count]) * (@width - 40) * 0.96 + @width * 0.02
+      mstyle = {transform: "rotate(#{@state[:tic]?'-':''}7deg)", left: "#{@state[:rabbit_pos]}px"}
       ystyle = {transform: "rotate(#{@state[:tic]?'':'-'}7deg)"}
-      ystyle.merge!(left: "#{youchan_pos}px") if @width > 0
+      ystyle.merge!(left: "#{turtle_pos}px") if @width > 0
 
       div({className: 'track-field'},
         @props[:start] ? [
           div({className: 'flag', style: {right: "#{@width * 0.02}px"}}),
-          div({className: 'matz avatar', style: mstyle}),
-          div({className: 'youchan avatar', style: ystyle})
+          div({className: 'rabbit avatar', style: mstyle}),
+          div({className: 'turtle avatar', style: ystyle})
         ] : nil)
     end
   end

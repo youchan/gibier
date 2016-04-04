@@ -98,12 +98,7 @@ h4 {
   text-align: center;
 }
 
-.page ul {
-  list-style-image: url('../images/sushidot_bulet.png');
-}
-
 .page ul ul {
-  list-style-image: url('../images/sushidot2_bulet.png');
   font-size: 0.9em;
 }
 
@@ -162,13 +157,15 @@ a:active {
   z-index: 900;
 }
 
-.track-field .matz {
-  background-image: url("../images/matz.jpg");
+.track-field .rabbit {
+  background-image: url("../images/rabbit.png");
+  background-repeat: no-repeat;
   z-index: 1000;
 }
 
-.track-field .youchan {
-  background-image: url("../images/youchan.jpg");
+.track-field .turtle {
+  background-image: url("../images/turtle.png");
+  background-repeat: no-repeat;
   z-index: 999;
   top: 30px;
 }

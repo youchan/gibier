@@ -80,6 +80,14 @@
   width: 100%;
 }
 
+.page ul {
+  list-style-image: url('../data/images/sushidot_bulet.png');
+}
+
+.page ul ul {
+  list-style-image: url('../data/images/sushidot2_bulet.png');
+}
+
 .page .small {
   margin-bottom: 0;
   font-size: 0.8em;
