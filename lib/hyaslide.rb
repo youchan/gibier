@@ -1,5 +1,6 @@
 require "hyaslide/version"
 
+require "hyaslide/render_hyaslide"
+
 module Hyaslide
-  # Your code goes here...
 end

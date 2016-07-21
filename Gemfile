@@ -10,3 +10,5 @@ gem 'unindent'
 gem 'rouge'
 gem 'fssm'
 gem 'eventmachine'
+
+gemspec

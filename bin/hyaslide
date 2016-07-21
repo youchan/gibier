@@ -1,26 +1,45 @@
+#!/usr/bin/env ruby
+
 require 'bundler'
 Bundler.require
 
+require 'rack'
 require 'rouge'
 require 'fssm'
 require 'eventmachine'
 require 'redcarpet'
-require_relative './render_hyaslide'
+require 'hyaslide'
+
+require 'optparse'
+
+dir = '.'
+
+OptParse.new do |opt|
+  opt.on('-d DIR', '--dir=DIR') do |v|
+    dir = v
+  end
+
+  opt.parse(ARGV)
+end
 
 class SlideLoader
-  def self.load_slide
+  def initialize(dir)
+    @dir = dir
+  end
+
+  def self.load_slide(dir)
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::Hyaslide, fenced_code_blocks: true)
-    File.open("data/pages.rb", "w+") do |f|
-      data = File.read("data/slide.md")
+    File.open("#{dir}/pages/pages.rb", "w+") do |f|
+      data = File.read("#{dir}/slide.md")
       f.write markdown.render(data)
     end
   end
 
   def run
-    SlideLoader.load_slide
+    SlideLoader.load_slide(@dir)
 
     EM.defer do
-      FSSM.monitor("#{__dir__}/data/", "slide.md") do
+      FSSM.monitor("#{@dir}", "slide.md") do
         update {|base, relative| SlideLoader.load_slide }
         delete {|base, relative|}
         create {|base, relative|}
@@ -29,15 +48,16 @@ class SlideLoader
   end
 end
 
-SlideLoader.new.run
+Dir.mkdir dir + '/pages' unless Dir.exist? dir + '/pages'
 
-run Opal::Server.new { |s|
+SlideLoader.new(dir).run
+
+Rack::Handler::WEBrick.run Opal::Server.new {|s|
   s.append_path 'app'
-  s.append_path 'data'
+  s.append_path dir + '/pages'
   s.append_path 'images'
   s.append_path 'css'
   s.append_path 'fonts'
-  #s.append_path '../../hyalite/client'
 
   s.debug = true
   s.main = 'application'
