@@ -26,13 +26,13 @@ body {
 .slide {
   position: absolute;
   width: 960px;
-  height: 700px;
+  height: 720px;
   margin: 0 auto;
 }
 
 .wrap-page {
   width: 960px;
-  height: 700px;
+  height: 720px;
   margin: 0 auto;
   color: #000;
   background-color: #fff;

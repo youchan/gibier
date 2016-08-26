@@ -12,6 +12,8 @@ module App
 end
 
 module Hyaslide
+  SLIDE_WIDTH = 960
+  SLIDE_HEIGHT = 720
   def self.page_count
     @page_count
   end
@@ -96,15 +98,15 @@ module Hyaslide
     end
 
     def render
-      follow_height = $window.view.height / $window.view.width < 700 / 960
+      follow_height = $window.view.height / $window.view.width < SLIDE_HEIGHT / SLIDE_WIDTH
       if follow_height
-        zoom = $window.view.height.to_f / 700 * 0.9
+        zoom = $window.view.height.to_f / SLIDE_HEIGHT * 0.98
       else
-        zoom = $window.view.width.to_f / 960 * 0.9
+        zoom = $window.view.width.to_f / SLIDE_WIDTH * 0.98
       end
 
-      top = ($window.view.height / zoom - 700) / 2
-      left = ($window.view.width / zoom - 960) / 2
+      top = ($window.view.height / zoom - SLIDE_HEIGHT) / 2
+      left = ($window.view.width / zoom - SLIDE_WIDTH) / 2
 
       footer_style = @state[:page_number] == 1 || !@state[:footer_visible] ? {style: {display: 'none'}} : {}
 
@@ -116,7 +118,7 @@ module Hyaslide
             style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
             onKeyDown: -> (evt) { handle_key_down(evt) }
           },
-            pages(700 * zoom)
+            pages(SLIDE_HEIGHT * zoom)
           ),
           Hyaslide::TrackField.el({total_time: 30 * 60, start: @state[:start], page_number: @state[:page_number], page_count: Hyaslide.page_count}),
           section({className: 'footer'}.merge(footer_style),
@@ -128,8 +130,8 @@ module Hyaslide
         div({
             className: 'print',
             onKeyDown: -> (evt) { handle_key_down(evt) } },
-          pages(700 * zoom).map do |page|
-            top += 700 * zoom
+          pages(SLIDE_HEIGHT * zoom).map do |page|
+            top += SLIDE_HEIGHT * zoom
             div({
               className: 'wrap-page',
               style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
