@@ -9,6 +9,8 @@ class String
       "img(#{$1})"
     elsif self =~ /<div>(.*)<\/div>/
       "div(#{$1})"
+    elsif self =~ /<strong>(.*)<\/strong>/
+      "strong(nil, \"#{$1}\")"
     else
       "\"#{self.gsub(/\"/, "\\\"").gsub(/\\/, "\\\\")}\""
     end
@@ -185,7 +187,7 @@ EOD
       end
 
       def double_emphasis(*args)
-        "## #{args}"
+        "<strong>#{args.first}</strong>"
       end
 
       def paragraph(text)
