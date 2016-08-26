@@ -191,12 +191,13 @@ EOD
       end
 
       def paragraph(text)
+        lines = text.split(/  $/)
         if text[0] == '%'
           class_name = text[1...text.index(':')]
-          text = text[(text.index(':') + 1)...text.length].lstrip
-          "      children << p({className:\"#{class_name}\"}, #{text.escape})\n"
+          lines[0] = lines.first[(lines.first.index(':') + 1)...lines.first.length].lstrip
+          "      children << p({className:\"#{class_name}\"}, #{lines.map{|l| l.escape}.join(',Hyalite.create_element(\'br\'),')})\n"
         else
-          "      children << p(nil, #{text.escape})\n"
+          "      children << p(nil, #{lines.map{|l| l.escape}.join(',Hyalite.create_element(\'br\'),')})\n"
         end
       end
 
