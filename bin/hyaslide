@@ -1,15 +1,12 @@
 #!/usr/bin/env ruby
 
-require 'bundler'
-Bundler.require
+require_relative '../lib/hyaslide'
 
 require 'rack'
 require 'rouge'
 require 'fssm'
 require 'eventmachine'
 require 'redcarpet'
-require 'hyaslide'
-
 require 'optparse'
 
 dir = '.'

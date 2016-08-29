@@ -25,6 +25,11 @@ PATH
   remote: .
   specs:
     hyaslide (0.1.0)
+      eventmachine
+      fssm
+      redcarpet
+      rouge
+      unindent
 
 GEM
   remote: https://rubygems.org/

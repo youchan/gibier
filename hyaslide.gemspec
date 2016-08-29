@@ -18,6 +18,12 @@ Gem::Specification.new do |spec|
   spec.executables   = "hyaslide"
   spec.require_paths = ["lib"]
 
+  spec.add_runtime_dependency 'redcarpet'
+  spec.add_runtime_dependency 'unindent'
+  spec.add_runtime_dependency 'rouge'
+  spec.add_runtime_dependency 'fssm'
+  spec.add_runtime_dependency 'eventmachine'
+
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
