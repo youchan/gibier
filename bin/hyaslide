@@ -1,8 +1,13 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/hyaslide'
+require 'bundler/setup'
+Bundler.require(:default)
+
+require_relative '../lib/hyaslide/render_hyaslide'
 
 require 'rack'
+require 'opal'
+require 'opal-browser'
 require 'rouge'
 require 'fssm'
 require 'eventmachine'
@@ -49,14 +54,19 @@ Dir.mkdir dir + '/pages' unless Dir.exist? dir + '/pages'
 
 SlideLoader.new(dir).run
 
-Rack::Handler::WEBrick.run Opal::Server.new {|s|
+server = Opal::Server.new {|s|
   s.append_path 'app'
   s.append_path dir + '/pages'
   s.append_path 'images'
   s.append_path 'css'
   s.append_path 'fonts'
 
+  Opal.use_gem 'opal-router'
+  Opal.use_gem 'hyalite'
+
   s.debug = true
   s.main = 'application'
   s.index_path = 'index.html.haml'
 }
+
+Rack::Handler::WEBrick.run server

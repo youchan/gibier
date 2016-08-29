@@ -1,5 +1,6 @@
 require 'unindent'
 require 'rouge'
+require 'redcarpet'
 
 class String
   def escape
