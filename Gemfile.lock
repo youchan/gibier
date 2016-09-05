@@ -27,6 +27,7 @@ PATH
     hyaslide (0.1.0)
       eventmachine
       fssm
+      rack (= 1.6.4)
       redcarpet
       rouge
       unindent
@@ -50,15 +51,15 @@ GEM
       opal
       paggio
     paggio (0.2.6)
-    rack (2.0.1)
+    rack (1.6.4)
     rake (10.5.0)
     redcarpet (3.3.4)
-    rouge (2.0.5)
+    rouge (1.10.1)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
-    rspec-core (3.5.2)
+    rspec-core (3.5.3)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -88,7 +89,7 @@ DEPENDENCIES
   opal-router!
   rake (~> 10.0)
   redcarpet
-  rouge
+  rouge (~> 1.10.1)
   rspec (~> 3.0)
   unindent
 

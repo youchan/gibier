@@ -7,7 +7,7 @@ gem 'hyalite',        github: 'youchan/hyalite'
 
 gem 'redcarpet'
 gem 'unindent'
-gem 'rouge'
+gem 'rouge', "~> 1.10.1"
 gem 'fssm'
 gem 'eventmachine'
 
