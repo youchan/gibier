@@ -3,7 +3,7 @@
 require 'bundler/setup'
 Bundler.require(:default)
 
-require_relative '../lib/hyaslide/render_hyaslide'
+require_relative './lib/hyaslide/render_hyaslide'
 
 require 'rack'
 require 'opal'
@@ -14,7 +14,7 @@ require 'eventmachine'
 require 'redcarpet'
 require 'optparse'
 
-dir = '.'
+dir = 'data'
 
 OptParse.new do |opt|
   opt.on('-d DIR', '--dir=DIR') do |v|
