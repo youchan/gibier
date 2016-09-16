@@ -14,6 +14,8 @@ end
 module Hyaslide
   SLIDE_WIDTH = 960
   SLIDE_HEIGHT = 720
+  TOTAL_TIME = 35 * 60
+
   def self.page_count
     @page_count
   end
@@ -120,7 +122,7 @@ module Hyaslide
           },
             pages(SLIDE_HEIGHT * zoom)
           ),
-          Hyaslide::TrackField.el({total_time: 30 * 60, start: @state[:start], page_number: @state[:page_number], page_count: Hyaslide.page_count}),
+          Hyaslide::TrackField.el({total_time: TOTAL_TIME, start: @state[:start], page_number: @state[:page_number], page_count: Hyaslide.page_count}),
           section({className: 'footer'}.merge(footer_style),
             p({className: 'title'}, Hyaslide.title),
             p({className: 'powered-by'}, "Powered by ", span({className: "hyalite"}, "Hyalite"))
