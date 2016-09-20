@@ -1,6 +1,7 @@
 require "hyaslide/version"
 
-require "hyaslide/render_hyaslide"
+require "hyaslide/slide_loader"
+require "hyaslide/server"
 
 module Hyaslide
 end

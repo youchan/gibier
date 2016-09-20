@@ -1,0 +1,96 @@
+GIT
+  remote: git://github.com/adambeynon/opal-router.git
+  revision: bc8c242510794ecbb842b52423732f2ec55c2a1e
+  specs:
+    opal-router (0.0.1)
+      opal (>= 0.3.44)
+
+GIT
+  remote: git://github.com/opal/opal-haml.git
+  revision: ca3d7339098dc115c0cedb9f1aeccd1f7187dd71
+  specs:
+    opal-haml (0.4.1)
+      haml
+      opal (>= 0.5.0, < 1.0.0)
+
+PATH
+  remote: ../..
+  specs:
+    hyaslide (0.1.0)
+      eventmachine
+      fssm
+      haml
+      redcarpet
+      rouge
+      sass
+      sinatra
+      sinatra-contrib
+      thin
+      unindent
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    backports (3.6.8)
+    concurrent-ruby (1.0.2)
+    daemons (1.2.4)
+    eventmachine (1.2.0.1)
+    fssm (0.2.10)
+    haml (4.0.7)
+      tilt
+    hike (1.2.3)
+    hyalite (0.0.2)
+      opal
+      opal-browser
+    multi_json (1.12.1)
+    opal (0.10.2)
+      hike (~> 1.2)
+      sourcemap (~> 0.1.0)
+      sprockets (~> 3.1)
+      tilt (>= 1.4)
+    opal-browser (0.2.0)
+      opal
+      paggio
+    paggio (0.2.6)
+    rack (1.6.4)
+    rack-protection (1.5.3)
+      rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    redcarpet (3.3.4)
+    rouge (2.0.6)
+    sass (3.4.22)
+    sinatra (1.4.7)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    sinatra-contrib (1.4.7)
+      backports (>= 2.0)
+      multi_json
+      rack-protection
+      rack-test
+      sinatra (~> 1.4.0)
+      tilt (>= 1.3, < 3)
+    sourcemap (0.1.1)
+    sprockets (3.7.0)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
+    thin (1.7.0)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (>= 1, < 3)
+    tilt (2.0.5)
+    unindent (1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  hyalite
+  hyaslide!
+  opal-browser
+  opal-haml!
+  opal-router!
+
+BUNDLED WITH
+   1.12.5
