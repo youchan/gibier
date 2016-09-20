@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'rouge'
+require File.expand_path('../../lib/hyaslide', __FILE__)
 
-puts Rouge::Themes::Base16.mode(:dark).render(scope: '.highlight')
+Hyaslide::Cli.start(ARGV)

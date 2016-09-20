@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/youchan/hyalide"
   spec.license       = "MIT"
 
-  spec.files         = Dir['lib/**/*.rb'] + Dir['bin/*']
+  spec.files         = Dir['lib/**/*.rb'] + Dir['bin/*'] + Dir['template/project/**/*']
   spec.bindir        = "bin"
   spec.executables   = "hyaslide"
   spec.require_paths = ["lib"]
@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'thin'
   spec.add_runtime_dependency 'haml'
   spec.add_runtime_dependency 'sass'
+  spec.add_runtime_dependency 'thor'
 
   spec.add_runtime_dependency 'redcarpet'
   spec.add_runtime_dependency 'unindent'
