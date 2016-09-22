@@ -145,7 +145,7 @@ module Hyaslide
   end
 end
 
-require 'pages'
+require 'pages/pages'
 
 $document.ready do
   $window.on(:resize) do

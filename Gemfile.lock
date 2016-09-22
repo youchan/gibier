@@ -5,6 +5,7 @@ PATH
       eventmachine
       fssm
       haml
+      rack (~> 1.6)
       redcarpet
       rouge
       sass

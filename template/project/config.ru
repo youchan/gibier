@@ -1,29 +1,33 @@
 require 'bundler/setup'
 Bundler.require(:default)
 
-require 'opal'
-require 'opal-browser'
-require 'rack'
+# require 'hyaslide'
+require_relative 'server'
 
 dir = 'data'
 Dir.mkdir dir + '/pages' unless Dir.exist? dir + '/pages'
-
 Hyaslide::SlideLoader.new(dir).run
 
-server = Opal::Server.new do |s|
-  s.append_path dir + '/pages'
-  s.append_path 'app'
-  s.append_path 'images'
-  s.append_path 'css'
-  s.append_path 'fonts'
+app = Rack::Builder.app do
+  server = Server.new(host: 'localhost')
 
-  Opal.use_gem 'opal-router'
-  Opal.use_gem 'hyalite'
-  Opal.use_gem 'hyaslide'
+  map '/' do
+    run server
+  end
 
-  s.debug = true
-  s.main = 'application'
-  s.index_path = 'index.html.haml'
+  map '/assets' do
+    run server.settings.opal.sprockets
+  end
+
+  map '/__OPAL_SOURCE_MAPS__' do
+    run Opal::SourceMapServer.new(server.settings.opal.sprockets, '/__OPAL_SOURCE_MAPS__')
+  end
 end
 
-Rack::Handler::WEBrick.run server
+Rack::Server.start({
+  app:    app,
+  server: 'thin',
+  Host:   '0.0.0.0',
+  Port:   8080,
+  signals: false,
+})

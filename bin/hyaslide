@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require File.expand_path('../../lib/hyaslide', __FILE__)
+require_relative '../lib/hyaslide/cli'
 
 Hyaslide::Cli.start(ARGV)
