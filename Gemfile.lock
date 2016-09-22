@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hyaslide (0.4.0)
+    hyaslide (0.4.1)
       eventmachine
       fssm
       haml
