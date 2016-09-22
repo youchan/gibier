@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/youchan/hyalide"
   spec.license       = "MIT"
 
-  spec.files         = Dir['lib/**/*.rb'] + Dir['bin/*'] + Dir['template/project/**/*']
+  spec.files         = Dir['lib/**/*.rb'] + Dir['bin/*'] + Dir['template/**/*']
   spec.bindir        = "bin"
   spec.executables   = "hyaslide"
   spec.require_paths = ["lib"]

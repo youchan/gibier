@@ -2,12 +2,13 @@
 %html(lang="en" data-framework="hyalite")
   %head
     %meta{charset:"utf-8"}
-    %title Writting web application in Ruby
+    %title= @slide_name
     %link{rel:"stylesheet", href:"assets/css/application.css"}
     %link{rel:"stylesheet", href:"assets/css/highlight.css"}
 
   %body
     %section.hyaslide
 
-    = ::Opal::Sprockets.javascript_include_tag('application', sprockets: settings.opal.sprockets, prefix: 'assets', debug: true)
-
+    :javascript
+      window.slideName = '#{@slide_name}'
+    = ::Opal::Sprockets.javascript_include_tag('slides/sample/app', sprockets: settings.opal.sprockets, prefix: 'assets', debug: true)

@@ -1,12 +1,15 @@
 require 'bundler/setup'
 Bundler.require(:default)
 
-# require 'hyaslide'
 require_relative 'server'
 
 dir = 'data'
-Dir.mkdir dir + '/pages' unless Dir.exist? dir + '/pages'
-Hyaslide::SlideLoader.new(dir).run
+
+Dir.foreach(dir) do |dir_name|
+  if !dir_name.start_with?('.') && File.directory?("#{dir}/#{dir_name}")
+    Hyaslide::SlideLoader.new(dir_name).run
+  end
+end
 
 app = Rack::Builder.app do
   server = Server.new(host: 'localhost')

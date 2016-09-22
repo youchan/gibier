@@ -3,13 +3,6 @@ require 'opal-router'
 require 'browser/interval'
 require 'browser/location'
 require 'track_field'
-require 'page_base'
-
-module App
-  def self.render
-    Hyalite.render(Hyalite.create_element(Hyaslide::Slide, nil), $document['.hyaslide'])
-  end
-end
 
 module Hyaslide
   SLIDE_WIDTH = 960
@@ -30,6 +23,14 @@ module Hyaslide
 
   def self.title=(title)
     @title = title
+  end
+
+  def self.slide_name
+    @slide_name
+  end
+
+  def self.slide_name=(name)
+    @slide_name = name
   end
 
   class Slide
@@ -67,11 +68,11 @@ module Hyaslide
 
       router = Router.new
       router.route('/') { page_to(num) }
-      router.route('/:page') {|params| p params; set_state(page_number: params[:page].to_i) }
+      router.route(':page') {|params| set_state(page_number: params[:page].to_i) }
     end
 
     def page_to(num)
-      $window.location.assign("/#/#{num}")
+      $window.location.assign("/#{Hyaslide.slide_name}##{num}")
     end
 
     def handle_key_down(evt)
@@ -145,12 +146,3 @@ module Hyaslide
   end
 end
 
-require 'pages/pages'
-
-$document.ready do
-  $window.on(:resize) do
-    App.render
-  end
-
-  App.render
-end

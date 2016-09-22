@@ -22,9 +22,11 @@ Run
 
     $ bundle exec rackup
 
-Open http://localhost:8080 then you can see the sample slide.
+Open http://localhost:8080/sample then you can see the sample slide.
 
 ## Editing
 
-* `data/slide.md` : Markdown file describe the presentation.
-* `data/css/custom.css` : Custom CSS file.
+* `data/sample/slide.md` : Markdown file describe the presentation.
+* `data/sample/css/custom.css` : Custom CSS file.
+
+Rename directory name `sample` to suit your convenience.

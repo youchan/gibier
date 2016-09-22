@@ -27,7 +27,8 @@ class Server < Sinatra::Base
     enable :sessions
   end
 
-  get '/' do
+  get '/:slide_name' do
+    @slide_name = params['slide_name']
     haml :index
   end
 
