@@ -15,7 +15,7 @@ module Hyaslide
 
     def self.load_slide(name)
       Dir.mkdir('app/slides') unless Dir.exist?('app/slides')
-      Dir.mkdir(src_path(@name)) unless Dir.exist?(src_path(@name))
+      Dir.mkdir(src_path(name)) unless Dir.exist?(src_path(name))
 
       File.open("#{src_path(name)}/pages.rb", "w+") do |f|
         data = File.read("data/#{name}/slide.md")
