@@ -3,6 +3,10 @@ require 'opal'
 require 'opal/sprockets'
 
 class Server < Sinatra::Base
+  def initialize(slide_loader, *args, &block)
+    @slide_loader = slide_loader
+    super(*args, &block)
+  end
 
   def sprockets
     settings.opal.sprockets
@@ -27,9 +31,14 @@ class Server < Sinatra::Base
     enable :sessions
   end
 
+  get '/' do
+    @slides = @slide_loader.slides
+    haml :index
+  end
+
   get '/:slide_name' do
     @slide_name = params['slide_name']
-    haml :index
+    haml :slide
   end
 
   get "/favicon.ico" do
