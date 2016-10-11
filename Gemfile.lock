@@ -1,13 +1,13 @@
 PATH
   remote: .
   specs:
-    hyaslide (0.5.0)
+    hyaslide (0.5.1)
       eventmachine
       fssm
       haml
       rack (~> 1.6)
       redcarpet
-      rouge
+      rouge (~> 1.10)
       sass
       sinatra
       sinatra-contrib
@@ -33,7 +33,7 @@ GEM
       rack (>= 1.0)
     rake (10.5.0)
     redcarpet (3.3.4)
-    rouge (2.0.6)
+    rouge (1.10.1)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
