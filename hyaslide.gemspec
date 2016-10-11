@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'redcarpet'
   spec.add_runtime_dependency 'unindent'
-  spec.add_runtime_dependency 'rouge'
+  spec.add_runtime_dependency 'rouge', "~> 1.10"
   spec.add_runtime_dependency 'fssm'
   spec.add_runtime_dependency 'eventmachine'
 
