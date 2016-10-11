@@ -4,6 +4,7 @@
     %meta{charset:"utf-8"}
     %title= @slide_name
     %link{rel:"stylesheet", href:"assets/css/application.css"}
+    %link{rel:"stylesheet", href:"assets/#{@slide_name}/css/custom.css"}
     %link{rel:"stylesheet", href:"assets/css/highlight.css"}
 
   %body
@@ -11,4 +12,4 @@
 
     :javascript
       window.slideName = '#{@slide_name}'
-    = ::Opal::Sprockets.javascript_include_tag('slides/sample/app', sprockets: settings.opal.sprockets, prefix: 'assets', debug: true)
+    = ::Opal::Sprockets.javascript_include_tag("slides/#{@slide_name}/app", sprockets: settings.opal.sprockets, prefix: 'assets', debug: true)
