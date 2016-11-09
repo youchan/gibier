@@ -7,7 +7,6 @@ require_relative './render_hyaslide'
 
 module Hyaslide
   class SlideLoader
-    MARKDOWN = Redcarpet::Markdown.new(Redcarpet::Render::Hyaslide, fenced_code_blocks: true)
 
     attr_reader :slides
 
@@ -28,7 +27,8 @@ module Hyaslide
 
       File.open("#{src_path(name)}/pages.rb", "w+") do |f|
         data = File.read("data/#{name}/slide.md")
-        f.write MARKDOWN.render(data)
+        markdown = Redcarpet::Markdown.new(Hyaslide::Renderer.create(name), fenced_code_blocks: true)
+        f.write markdown.render(data)
       end
 
       File.open("#{src_path(name)}/app.rb", "w+") do |f|
