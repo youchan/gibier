@@ -36,12 +36,12 @@ class Server < Sinatra::Base
     haml :index
   end
 
+  get "/favicon.ico" do
+  end
+
   get '/:slide_name' do
     @slide_name = params['slide_name']
     haml :slide
-  end
-
-  get "/favicon.ico" do
   end
 end
 
