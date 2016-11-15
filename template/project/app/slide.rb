@@ -51,7 +51,7 @@ module Hyaslide
     end
 
     def initial_state
-      page_num = $window.location.uri.sub(/.*\/#\/([0-9]+)/, '\1').to_i
+      page_num = $window.location.uri.sub(/.*#([0-9]+)/, '\1').to_i
 
       {
         page_number: page_num,
