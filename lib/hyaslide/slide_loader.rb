@@ -14,9 +14,9 @@ module Hyaslide
       @slides = []
     end
 
-    def load_slide(name)
+    def init_slide(name)
       Dir.mkdir('app/slides') unless Dir.exist?('app/slides')
-      Dir.mkdir(src_path(name)) unless Dir.exist?(src_path(name))
+      Dir.mkdir(SlideLoader.src_path(name)) unless Dir.exist?(SlideLoader.src_path(name))
 
       File.foreach("data/#{name}/slide.md") do |line|
         if line =~ /\A# (.+)/
@@ -25,6 +25,10 @@ module Hyaslide
         end
       end
 
+      SlideLoader.load_slide(name)
+    end
+
+    def self.load_slide(name)
       File.open("#{src_path(name)}/pages.rb", "w+") do |f|
         data = File.read("data/#{name}/slide.md")
         markdown = Redcarpet::Markdown.new(Hyaslide::Renderer.create(name), fenced_code_blocks: true)
@@ -36,16 +40,16 @@ module Hyaslide
       end
     end
 
-    def src_path(name)
+    def self.src_path(name)
       "app/slides/#{name}"
     end
 
     def add_slide(name)
-      load_slide(name)
+      init_slide(name)
 
       EM.defer do
-        FSSM.monitor("data/#{@name}", "slide.md") do
-          update {|base, relative| SlideLoader.load_slide(@name) }
+        FSSM.monitor("data/#{name}", "slide.md") do
+          update {|base, relative| Hyaslide::SlideLoader.load_slide(name) }
           delete {|base, relative|}
           create {|base, relative|}
         end
