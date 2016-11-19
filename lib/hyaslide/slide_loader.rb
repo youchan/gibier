@@ -16,7 +16,9 @@ module Hyaslide
 
     def init_slide(name)
       Dir.mkdir('app/slides') unless Dir.exist?('app/slides')
+      Dir.mkdir('app/scripts') unless Dir.exist?('app/scripts')
       Dir.mkdir(SlideLoader.src_path(name)) unless Dir.exist?(SlideLoader.src_path(name))
+      Dir.mkdir(SlideLoader.script_path(name)) unless Dir.exist?(SlideLoader.script_path(name))
 
       File.foreach("data/#{name}/slide.md") do |line|
         if line =~ /\A# (.+)/
@@ -35,6 +37,14 @@ module Hyaslide
         f.write markdown.render(data)
       end
 
+      if File.exist?("data/#{name}/script.md")
+        File.open("#{script_path(name)}/script.html", "w+") do |f|
+          script = File.read("data/#{name}/script.md")
+          markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(hard_wrap: true), autolink: true, fenced_code_blocks: true)
+          f.write markdown.render(script)
+        end
+      end
+
       File.open("#{src_path(name)}/app.rb", "w+") do |f|
         f.write Tilt::StringTemplate.new(File.expand_path('../../../template/app.rb', __FILE__)).render(Object.new, name: name)
       end
@@ -44,11 +54,15 @@ module Hyaslide
       "app/slides/#{name}"
     end
 
+    def self.script_path(name)
+      "app/scripts/#{name}"
+    end
+
     def add_slide(name)
       init_slide(name)
 
       EM.defer do
-        FSSM.monitor("data/#{name}", "slide.md") do
+        FSSM.monitor("data/#{name}", %w(slide.md script.md)) do
           update {|base, relative| Hyaslide::SlideLoader.load_slide(name) }
           delete {|base, relative|}
           create {|base, relative|}
