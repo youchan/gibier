@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'sinatra'
   spec.add_runtime_dependency 'sinatra-contrib'
+  spec.add_runtime_dependency 'sinatra-websocket'
   spec.add_runtime_dependency 'thin'
   spec.add_runtime_dependency 'haml'
   spec.add_runtime_dependency 'sass'
