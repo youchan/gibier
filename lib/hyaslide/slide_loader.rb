@@ -48,6 +48,10 @@ module Hyaslide
       File.open("#{src_path(name)}/app.rb", "w+") do |f|
         f.write Tilt::StringTemplate.new(File.expand_path('../../../template/app.rb', __FILE__)).render(Object.new, name: name)
       end
+
+      File.open("#{src_path(name)}/script.rb", "w+") do |f|
+        f.write Tilt::StringTemplate.new(File.expand_path('../../../template/script.rb', __FILE__)).render(Object.new, name: name)
+      end
     end
 
     def self.src_path(name)

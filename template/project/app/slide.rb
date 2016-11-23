@@ -63,7 +63,15 @@ module Hyaslide
 
     def component_did_mount
       $window.on(:keydown) do |evt|
-        handle_key_down(evt)
+        handle_key_down(evt.code)
+      end
+
+      @props[:ws].on(:message) do |msg|
+        (event, value) = msg.data.split(':')
+        case event
+        when 'keydown'
+          handle_key_down(value.to_i)
+        end
       end
 
       router = Router.new
@@ -75,8 +83,8 @@ module Hyaslide
       $window.location.assign("/#{Hyaslide.slide_name}##{num}")
     end
 
-    def handle_key_down(evt)
-      case evt.code
+    def handle_key_down(keycode)
+      case keycode
       when 39
         page_to(@state[:page_number] + 1) if @state[:page_number] < Hyaslide.page_count
       when 37
@@ -96,7 +104,7 @@ module Hyaslide
       when 70
         set_state(footer_visible: !@state[:footer_visible])
       else
-        puts "keycode = #{evt.code}"
+        puts "keycode = #{keycode}"
       end
     end
 
@@ -119,7 +127,7 @@ module Hyaslide
           div({
             className: 'slide',
             style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
-            onKeyDown: -> (evt) { handle_key_down(evt) }
+            onKeyDown: -> (evt) { handle_key_down(evt.code) }
           },
             pages(SLIDE_HEIGHT * zoom)
           ),

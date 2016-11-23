@@ -1,0 +1,10 @@
+!!!
+%html(lang="en" data-framework="hyalite")
+  %head
+    %meta{charset:"utf-8"}
+    %title= "Script of #{@slide_name}"
+
+  %body
+    %section.script
+
+    = ::Opal::Sprockets.javascript_include_tag("slides/#{@slide_name}/script", sprockets: settings.opal.sprockets, prefix: '/assets', debug: true)
