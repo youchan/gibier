@@ -10,4 +10,4 @@
       %ul
         - @slides.each do |slide|
           %li
-            %a{href: slide[:name]}= slide[:title]
+            %a{href: slide[:name]}= "[#{slide[:name]}] \"#{slide[:title]}\""
