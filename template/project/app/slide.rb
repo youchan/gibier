@@ -7,7 +7,7 @@ require 'track_field'
 module Hyaslide
   SLIDE_WIDTH = 960
   SLIDE_HEIGHT = 720
-  TOTAL_TIME = 35 * 60
+  TOTAL_TIME = 10 * 60
 
   def self.page_count
     @page_count
@@ -63,7 +63,7 @@ module Hyaslide
 
     def component_did_mount
       $window.on(:keydown) do |evt|
-        handle_key_down(evt.code)
+        handle_key_down(evt)
       end
 
       @props[:ws].on(:message) do |msg|
@@ -83,13 +83,14 @@ module Hyaslide
       $window.location.assign("/#{Hyaslide.slide_name}##{num}")
     end
 
-    def handle_key_down(keycode)
+    def handle_key_down(event)
+      keycode = event.code
       case keycode
-      when 39
+      when 39,34
         page_to(@state[:page_number] + 1) if @state[:page_number] < Hyaslide.page_count
-      when 37
+      when 37,33
         page_to(@state[:page_number] - 1) if @state[:page_number] > 0
-      when 83
+      when 83,66
         unless @state[:start]
           set_state(start: Time.now)
         else
@@ -103,9 +104,27 @@ module Hyaslide
         end
       when 70
         set_state(footer_visible: !@state[:footer_visible])
+        if `event.native.ctrlKey`
+          fullscreen
+        end
+      when 116
+        if `event.native.shiftKey`
+          fullscreen
+        end
       else
         puts "keycode = #{keycode}"
       end
+    end
+
+    def fullscreen
+      %x(
+        var element = document.getElementsByClassName('hyaslide')[0];
+        var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+
+        if (requestMethod) {
+            requestMethod.call(element);
+        }
+      )
     end
 
     def render
@@ -127,7 +146,7 @@ module Hyaslide
           div({
             className: 'slide',
             style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
-            onKeyDown: -> (evt) { handle_key_down(evt.code) }
+            onKeyDown: -> (event) { handle_key_down(event) }
           },
             pages(SLIDE_HEIGHT * zoom)
           ),
