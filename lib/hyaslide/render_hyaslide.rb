@@ -170,6 +170,7 @@ EOD
     end
 
     def link(link, title, content)
+      link or return
       "<a>{href: #{link.escape}, target: \"_blank\"}, #{content.escape}</a>"
     end
 
