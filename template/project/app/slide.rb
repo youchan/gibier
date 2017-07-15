@@ -7,7 +7,6 @@ require 'track_field'
 module Gibier
   SLIDE_WIDTH = 960
   SLIDE_HEIGHT = 720
-  TOTAL_TIME = 10 * 60
 
   def self.page_count
     @page_count
@@ -127,6 +126,18 @@ module Gibier
       )
     end
 
+    def duration
+      text = "10"
+      %x(
+        var el = document.getElementsByClassName('duration')[0];
+        if (el) {
+          text = el.innerText;
+        }
+      )
+
+      text.to_i * 60
+    end
+
     def render
       follow_height = $window.view.height / $window.view.width < SLIDE_HEIGHT / SLIDE_WIDTH
       if follow_height
@@ -150,7 +161,7 @@ module Gibier
           },
             pages(SLIDE_HEIGHT * zoom)
           ),
-          Gibier::TrackField.el({total_time: TOTAL_TIME, start: @state[:start], page_number: @state[:page_number], page_count: Gibier.page_count}),
+          Gibier::TrackField.el({total_time: duration, start: @state[:start], page_number: @state[:page_number], page_count: Gibier.page_count}),
           section({className: 'footer'}.merge(footer_style),
             p({className: 'title'}, Gibier.title),
             p({className: 'powered-by'}, "Powered by ", span({className: "hyalite"}, "Hyalite"))
