@@ -1,21 +1,22 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'hyaslide/version'
+require 'gibier/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "hyaslide"
-  spec.version       = Hyaslide::VERSION
+  spec.name          = "gibier"
+  spec.version       = Gibier::VERSION
   spec.authors       = ["youchan"]
   spec.email         = ["youchan01@gmail.com"]
 
-  spec.summary       = %q{Making slide from markdown file}
-  spec.description   = %q{This is presentation app making slide from markdown file.}
-  spec.homepage      = "https://github.com/youchan/hyalide"
+  spec.summary       = %q{A slide tool inspired by Rabbit}
+  spec.description   = %q{ This is a simple slideshow app using Hyalite(https://github.com/youchan/hyalite).
+Its purpose are one of examples for Hyalite and also intend to be used as pratical presentation tool.}
+  spec.homepage      = "https://github.com/youchan/gibier"
   spec.license       = "MIT"
 
   spec.files         = Dir['lib/**/*.rb'] + Dir['bin/*'] + Dir['template/**/*']
   spec.bindir        = "bin"
-  spec.executables   = "hyaslide"
+  spec.executables   = "gibier"
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency 'sinatra'

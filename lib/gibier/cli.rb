@@ -2,7 +2,7 @@ require 'thor'
 require 'fileutils'
 require 'rouge'
 
-module Hyaslide
+module Gibier
   class Cli < Thor
     desc 'new', 'create new project'
 

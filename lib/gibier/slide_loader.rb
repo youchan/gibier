@@ -3,9 +3,9 @@ require 'fssm'
 require 'eventmachine'
 require 'redcarpet'
 
-require_relative './render_hyaslide'
+require_relative './render'
 
-module Hyaslide
+module Gibier
   class SlideLoader
 
     attr_reader :slides
@@ -33,7 +33,7 @@ module Hyaslide
     def self.load_slide(name)
       File.open("#{src_path(name)}/pages.rb", "w+") do |f|
         data = File.read("data/#{name}/slide.md")
-        markdown = Redcarpet::Markdown.new(Hyaslide::Renderer.create(name), fenced_code_blocks: true)
+        markdown = Redcarpet::Markdown.new(Gibier::Renderer.create(name), fenced_code_blocks: true)
         f.write markdown.render(data)
       end
 
@@ -67,7 +67,7 @@ module Hyaslide
 
       EM.defer do
         FSSM.monitor("data/#{name}", %w(slide.md script.md)) do
-          update {|base, relative| Hyaslide::SlideLoader.load_slide(name) }
+          update {|base, relative| Gibier::SlideLoader.load_slide(name) }
           delete {|base, relative|}
           create {|base, relative|}
         end

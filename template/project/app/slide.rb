@@ -4,7 +4,7 @@ require 'browser/interval'
 require 'browser/location'
 require 'track_field'
 
-module Hyaslide
+module Gibier
   SLIDE_WIDTH = 960
   SLIDE_HEIGHT = 720
   TOTAL_TIME = 10 * 60
@@ -40,12 +40,12 @@ module Hyaslide
     def pages(height)
       case @state[:mode]
       when :slide
-        Hyaslide.page_count.times.map do |i|
-          Object.const_get("Hyaslide::Page#{i}").el({visible: @state[:page_number] == i, page_number: i, slide_height: height})
+        Gibier.page_count.times.map do |i|
+          Object.const_get("Gibier::Page#{i}").el({visible: @state[:page_number] == i, page_number: i, slide_height: height})
         end
       when :print
-        Hyaslide.page_count.times.map do |i|
-          Object.const_get("Hyaslide::Page#{i}").el({visible: true, page_number: i, slide_height: height})
+        Gibier.page_count.times.map do |i|
+          Object.const_get("Gibier::Page#{i}").el({visible: true, page_number: i, slide_height: height})
         end
       end
     end
@@ -80,14 +80,14 @@ module Hyaslide
     end
 
     def page_to(num)
-      $window.location.assign("/#{Hyaslide.slide_name}##{num}")
+      $window.location.assign("/#{Gibier.slide_name}##{num}")
     end
 
     def handle_key_down(event)
       keycode = event.code
       case keycode
       when 39,34
-        page_to(@state[:page_number] + 1) if @state[:page_number] < Hyaslide.page_count
+        page_to(@state[:page_number] + 1) if @state[:page_number] < Gibier.page_count
       when 37,33
         page_to(@state[:page_number] - 1) if @state[:page_number] > 0
       when 83,66
@@ -118,7 +118,7 @@ module Hyaslide
 
     def fullscreen
       %x(
-        var element = document.getElementsByClassName('hyaslide')[0];
+        var element = document.getElementsByClassName('gibier')[0];
         var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
 
         if (requestMethod) {
@@ -150,9 +150,9 @@ module Hyaslide
           },
             pages(SLIDE_HEIGHT * zoom)
           ),
-          Hyaslide::TrackField.el({total_time: TOTAL_TIME, start: @state[:start], page_number: @state[:page_number], page_count: Hyaslide.page_count}),
+          Gibier::TrackField.el({total_time: TOTAL_TIME, start: @state[:start], page_number: @state[:page_number], page_count: Gibier.page_count}),
           section({className: 'footer'}.merge(footer_style),
-            p({className: 'title'}, Hyaslide.title),
+            p({className: 'title'}, Gibier.title),
             p({className: 'powered-by'}, "Powered by ", span({className: "hyalite"}, "Hyalite"))
           )
         )

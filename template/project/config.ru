@@ -5,7 +5,7 @@ require_relative 'server'
 
 dir = 'data'
 
-slide_loader = Hyaslide::SlideLoader.new
+slide_loader = Gibier::SlideLoader.new
 Dir.foreach(dir) do |dir_name|
   if !dir_name.start_with?('.') && File.directory?("#{dir}/#{dir_name}")
     slide_loader.add_slide(dir_name)

@@ -18,7 +18,7 @@ class String
   end
 end
 
-module Hyaslide
+module Gibier
   class Renderer < Redcarpet::Render::Base
     def self.create(name)
       Class.new(Renderer) do
@@ -85,7 +85,7 @@ EOD
         end
 
         result << <<EOD
-class Hyaslide::Page#{@page_count} < Hyaslide::PageBase
+class Gibier::Page#{@page_count} < Gibier::PageBase
 def content
   [].tap do |children|
 EOD
@@ -124,7 +124,7 @@ EOD
 
         result <<
 <<EOD
-class Hyaslide::Page#{@page_count} < Hyaslide::PageBase
+class Gibier::Page#{@page_count} < Gibier::PageBase
 def header
   h#{header_level}(nil, #{text.escape})
 end
@@ -143,8 +143,8 @@ EOD
 end
 end
 
-Hyaslide.page_count = #{@page_count}
-Hyaslide.title = #{@title}
+Gibier.page_count = #{@page_count}
+Gibier.title = #{@title}
 EOD
     end
 

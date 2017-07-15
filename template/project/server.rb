@@ -21,7 +21,7 @@ class Server < Sinatra::Base
 
       Opal.use_gem 'opal-router'
       Opal.use_gem 'hyalite'
-      Opal.use_gem 'hyaslide'
+      Opal.use_gem 'gibier'
 
       Opal.paths.each {|path| server.append_path path }
 

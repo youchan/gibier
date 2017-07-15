@@ -4,11 +4,11 @@ require 'slides/#{name}/pages'
 require 'browser/socket'
 require 'browser/location'
 
-Hyaslide.slide_name = '#{name}'
+Gibier.slide_name = '#{name}'
 
 module App
   def self.render(ws)
-    Hyalite.render(Hyalite.create_element(Hyaslide::Slide, {ws:ws}), $document['.hyaslide'])
+    Hyalite.render(Hyalite.create_element(Gibier::Slide, {ws:ws}), $document['.gibier'])
   end
 end
 

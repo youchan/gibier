@@ -1,4 +1,4 @@
-module Hyaslide
+module Gibier
   class PageBase
     include Hyalite::Component
     include Hyalite::Component::ShortHand

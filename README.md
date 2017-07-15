@@ -1,17 +1,19 @@
-# Hyaslide
+# Gibier
 
-Hyaslide is a simple slideshow app using [Hyalite](https://github.com/youchan/hyalite).
-This has the purpose as one of examples for Hyalite and also intend to be used as pratical presentation tool.
+A slide tool inspired [Rabbit](https://rabbit-shocker.org/en/usage/rabbit-slide.html)
+
+This is a simple slideshow app using [Hyalite](https://github.com/youchan/hyalite).
+Its purpose are one of examples for Hyalite and also intend to be used as pratical presentation tool.
 
 ## Installation
 
-    $ gem install hyaslide
+    $ gem install gibier
 
 ## Setup slideshow
 
 Create new slide app project.
 
-    $ hyaslide new slide-app
+    $ gibier new slide-app
 
 Bundle install.
 

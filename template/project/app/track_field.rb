@@ -1,6 +1,6 @@
 require 'browser/interval'
 
-module Hyaslide
+module Gibier
   class TrackField
     include Hyalite::Component
     include Hyalite::Component::ShortHand
