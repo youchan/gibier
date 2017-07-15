@@ -6,8 +6,8 @@ class String
   def escape
     if self =~ /<a>(.*)<\/a>/
       "a(#{$1})"
-    elsif self =~ /<img>(.*)<\/img>/
-      "img(#{$1})"
+    elsif self =~ /<p>(.*)<img>(.*)<\/img><\/p>/
+      "p(#{$1}, img(#{$2}))"
     elsif self =~ /<div>(.*)<\/div>/
       "div(#{$1})"
     elsif self =~ /<strong>(.*)<\/strong>/
@@ -176,7 +176,7 @@ EOD
 
     def image(link, title, alt_text)
       href = "assets/#{page_name}/images/#{link}"
-      "<img>{className: \"#{alt_text}\", src: #{href.escape}}</img>"
+      "<p>{class: \"#{alt_text}\"}<img>{src: #{href.escape}}</img></p>"
     end
 
     def block_code(code, language)
