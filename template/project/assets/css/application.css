@@ -55,6 +55,17 @@ body {
   width: 100%;
 }
 
+.page p.icon {
+  margin: 0;
+  position: absolute;
+  top: 5.7em;
+  left: 25em;
+}
+
+.page p.icon img {
+  width: 3em;
+}
+
 .page code {
   font-size: 0.8em;
 }
@@ -78,6 +89,14 @@ body {
   width: 1em;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.page p.large {
+  text-align: center;
+}
+
+.page p.large img {
+  width: 80%;
 }
 
 h1 {
