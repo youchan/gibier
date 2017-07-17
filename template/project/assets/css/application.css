@@ -194,3 +194,7 @@ a:active {
   color: #ee8;
   font-weight: bold;
 }
+
+.duration {
+  display: none;
+}
