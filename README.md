@@ -26,6 +26,14 @@ Run
 
 Open http://localhost:8080/sample then you can see the sample slide.
 
+## Publishing to GH pages
+
+    $ gibier ghpages
+
+then, `docs` directory will be created.
+
+Push and make gh-pages enabled.
+
 ## Editing
 
 * `data/sample/slide.md` : Markdown file describe the presentation.
