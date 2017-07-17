@@ -1,7 +1,8 @@
 require "gibier/version"
 
-require 'gibier/cli'
-require "gibier/slide_loader"
-
 module Gibier
 end
+
+require "gibier/slide_helper"
+require "gibier/slide_loader"
+require 'gibier/cli'

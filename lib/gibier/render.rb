@@ -175,7 +175,7 @@ EOD
     end
 
     def image(link, title, alt_text)
-      href = "assets/#{page_name}/images/#{link}"
+      href = "\#{Gibier.assets_path}/images/#{link}"
       "<p>{class: \"#{alt_text}\"}<img>{src: #{href.escape}}</img></p>"
     end
 

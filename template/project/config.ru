@@ -6,10 +6,8 @@ require_relative 'server'
 dir = 'data'
 
 slide_loader = Gibier::SlideLoader.new
-Dir.foreach(dir) do |dir_name|
-  if !dir_name.start_with?('.') && File.directory?("#{dir}/#{dir_name}")
-    slide_loader.add_slide(dir_name)
-  end
+Gibier::SlideHelper.each_slides(dir) do |name|
+  slide_loader.add_slide(name)
 end
 
 app = Rack::Builder.app do

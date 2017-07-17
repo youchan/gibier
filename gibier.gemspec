@@ -26,6 +26,7 @@ Its purpose are one of examples for Hyalite and also intend to be used as pratic
   spec.add_runtime_dependency 'haml'
   spec.add_runtime_dependency 'sass'
   spec.add_runtime_dependency 'thor'
+  spec.add_runtime_dependency 'opal'
 
   spec.add_runtime_dependency 'redcarpet'
   spec.add_runtime_dependency 'unindent'

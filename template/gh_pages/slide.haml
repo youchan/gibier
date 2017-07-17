@@ -1,0 +1,18 @@
+!!!
+%html(lang="en" data-framework="hyalite")
+  %head
+    %meta{charset:"utf-8"}
+    %title= @slide_name
+    %link{rel:"stylesheet", href:"../assets/css/application.css"}
+    %link{rel:"stylesheet", href:"../assets/#{@slide_name}/css/custom.css"}
+    %link{rel:"stylesheet", href:"../assets/css/highlight.css"}
+
+  %body
+    %section.gibier
+
+    :javascript
+      window.slideName = '#{@slide_name}'
+      window.ghPages = true;
+      window.assetsPath = '../assets/#{@slide_name}';
+
+    %script{type:"text/javascript", src:"../assets/#{@slide_name}/javascripts/application.js"}

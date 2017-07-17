@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/gibier/cli'
+require 'gibier'
 
 Gibier::Cli.start(ARGV)

@@ -5,6 +5,8 @@ require 'browser/socket'
 require 'browser/location'
 
 Gibier.slide_name = '#{name}'
+Gibier.gh_pages = `window.ghPages`
+Gibier.assets_path = `window.assetsPath`
 
 module App
   def self.render(ws)
@@ -13,7 +15,7 @@ module App
 end
 
 $document.ready do
-  ws = Browser::Socket.new("ws://\#{$window.location.host}/push_notification/start/slide/#{name}")
+  ws = Browser::Socket.new("ws://\#{$window.location.host}/push_notification/start/slide/#{name}") unless Gibier.gh_pages
 
   $window.on(:resize) do
     App.render(ws)

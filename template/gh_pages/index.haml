@@ -1,0 +1,13 @@
+!!! 5
+%html(lang="en" data-framework="hyalite")
+  %head
+    %meta{charset:"utf-8"}
+    %title Index of slides
+
+  %body
+    %h1 Index of slides
+    %section
+      %ul
+        - @slides.each do |slide|
+          %li
+            %a{href: slide[:name]}= "[#{slide[:name]}] \"#{slide[:title]}\""
