@@ -36,6 +36,10 @@ module Gibier
     `window.ghPages`
   end
 
+  def self.gh_pages=(page)
+    `window.ghPages=page`
+  end
+
   def self.assets_path
     `window.assetsPath`
   end
