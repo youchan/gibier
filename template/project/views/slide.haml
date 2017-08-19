@@ -12,4 +12,5 @@
 
     :javascript
       window.slideName = '#{@slide_name}'
+      window.assetsPath = 'assets/#{@slide_name}'
     = ::Opal::Sprockets.javascript_include_tag("slides/#{@slide_name}/app", sprockets: settings.opal.sprockets, prefix: 'assets', debug: true)
