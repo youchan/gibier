@@ -98,11 +98,7 @@ module Gibier
     end
 
     def page_to(num)
-      if Gibier.gh_pages
-        $window.location.assign("./##{num}")
-      else
-        $window.location.assign("/#{Gibier.slide_name}##{num}")
-      end
+      $window.location.assign("#{$window.location.to_s.sub(/#\d+$/, '')}##{num}")
     end
 
     def handle_key_down(event)

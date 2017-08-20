@@ -30,23 +30,26 @@ module Gibier
       puts Rouge::Themes::Base16.mode(:dark).render(scope: '.highlight')
     end
 
-    desc 'ghpages', 'Create GitHub Pages'
-    option :name, type: :string, aliases: '-n', desc: 'Create GitHub Pages specified name'
-    def ghpages
-      puts "Create static pages"
+    desc 'static', 'Create Static Pages'
+    option :name, type: :string, aliases: '-n', desc: 'Specify slide name'
+    option :dir, type: :string, aliases: '-d', desc: 'Specify target directory'
+    def static
+      puts "Create Static Pages"
 
-      FileUtils.mkdir_p 'docs'
+      target_dir = options[:dir] || 'docs'
+      FileUtils.mkdir_p target_dir
       assets_dir = Dir.new(__dir__ + '/../../template/project/assets')
-      FileUtils.cp_r(assets_dir.path, 'docs')
+      FileUtils.cp_r(assets_dir.path, target_dir)
 
-      generator = StaticGenerator.new('data', 'docs')
+      generator = StaticGenerator.new('data', target_dir)
       if options[:name]
-        generator.generate_page(options[:name], 'assets', 'docs')
+        generator.generate_page(options[:name], 'assets', target_dir)
       else
         generator.generate_pages
       end
     end
 
+    map ghpages: :static
   end
 end
 
