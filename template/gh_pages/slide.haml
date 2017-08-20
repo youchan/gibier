@@ -3,9 +3,9 @@
   %head
     %meta{charset:"utf-8"}
     %title= @slide_name
-    %link{rel:"stylesheet", href:"../assets/css/application.css"}
-    %link{rel:"stylesheet", href:"../assets/#{@slide_name}/css/custom.css"}
-    %link{rel:"stylesheet", href:"../assets/css/highlight.css"}
+    %link{rel:"stylesheet", href:"#{@assets_path}/css/application.css"}
+    %link{rel:"stylesheet", href:"#{@assets_path}/#{@slide_name}/css/custom.css"}
+    %link{rel:"stylesheet", href:"#{@assets_path}/css/highlight.css"}
 
   %body
     %section.gibier
@@ -13,6 +13,6 @@
     :javascript
       window.slideName = '#{@slide_name}'
       window.ghPages = true;
-      window.assetsPath = '../assets/#{@slide_name}';
+      window.assetsPath = '#{@assets_path}/#{@slide_name}';
 
-    %script{type:"text/javascript", src:"../assets/#{@slide_name}/javascripts/application.js"}
+    %script{type:"text/javascript", src:"#{@assets_path}/#{@slide_name}/javascripts/application.js"}

@@ -1,5 +1,6 @@
 require 'hyalite'
 require 'opal-router'
+require 'browser'
 require 'browser/interval'
 require 'browser/location'
 require 'track_field'
