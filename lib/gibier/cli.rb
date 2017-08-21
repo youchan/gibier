@@ -45,7 +45,7 @@ module Gibier
       if options[:name]
         generator.generate_page(options[:name], 'assets', target_dir)
       else
-        generator.generate_pages
+        generator.generate_pages('../assets')
       end
     end
 
