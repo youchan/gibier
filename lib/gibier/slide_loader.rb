@@ -3,7 +3,7 @@ require 'fssm'
 require 'eventmachine'
 require 'redcarpet'
 
-require_relative './render'
+require_relative './renderer'
 
 module Gibier
   class SlideLoader
