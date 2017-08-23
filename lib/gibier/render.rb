@@ -4,16 +4,19 @@ require 'redcarpet'
 
 class String
   def escape
-    if self =~ /<a>(.*)<\/a>/
-      "a(#{$1})"
-    elsif self =~ /<p>(.*)<img>(.*)<\/img><\/p>/
-      "p(#{$1}, img(#{$2}))"
-    elsif self =~ /<div>(.*)<\/div>/
-      "div(#{$1})"
-    elsif self =~ /<strong>(.*)<\/strong>/
-      "strong(nil, \"#{$1}\")"
+    "\"#{self.gsub(/\"/, "\\\"").gsub(/\\/, "\\\\")}\""
+  end
+
+  def expand_tag
+    m = /\A(?<head>.*?)(?<body><(?<tag>\w+)( (?<attrs>{(\w+:.+?)(, \w:.+?)*}))?>(?<inner>.*?)<\/\k<tag>>)(?<tail>.*?)\z/.match(self)
+    if m
+      arr = []
+      arr << m[:head].escape unless m[:head].empty?
+      arr << "#{m[:tag]}(#{m[:attrs] || "nil"}, #{m[:inner].expand_tag})" unless m[:body].empty?
+      arr << m[:tail].expand_tag unless m[:tail].empty?
+      arr.join(',')
     else
-      "\"#{self.gsub(/\"/, "\\\"").gsub(/\\/, "\\\\")}\""
+      self.escape
     end
   end
 end
@@ -99,7 +102,7 @@ EOD
       clear_list_state
 
       if header_level > 3
-        return "      children << h#{header_level}(nil, #{text.escape})\n"
+        return "      children << h#{header_level}(nil, #{text.expand_tag})\n"
       end
 
       "".tap do |result|
@@ -126,7 +129,7 @@ EOD
 <<EOD
 class Gibier::Page#{@page_count} < Gibier::PageBase
 def header
-  h#{header_level}(nil, #{text.escape})
+  h#{header_level}(nil, #{text.expand_tag})
 end
 
 def content
@@ -151,11 +154,11 @@ EOD
     def list_item(item, orderd)
       "".tap do |result|
         if item =~ /.*\n +children << /
-          result << item.sub(/(.*)\n +children << /) { "                  li(nil, #{$1.strip.escape}),\n                  " }.rstrip
+          result << item.sub(/(.*)\n +children << /) { "                  li(nil, #{$1.strip.expand_tag}),\n                  " }.rstrip
           result << ",\n"
           @enter_list = false
         else
-          result << "                    li(nil, #{item.strip.escape}),\n"
+          result << "                    li(nil, #{item.strip.expand_tag}),\n"
         end
       end
     end
@@ -171,12 +174,12 @@ EOD
 
     def link(link, title, content)
       link or return
-      "<a>{href: #{link.escape}, target: \"_blank\"}, #{content.escape}</a>"
+      "<a {href:#{link.escape}, target:\"_blank\"}>#{content}</a>"
     end
 
     def image(link, title, alt_text)
       href = "\#{Gibier.assets_path}/images/#{link}"
-      "<p>{class: \"#{alt_text}\"}<img>{src: #{href.escape}}</img></p>"
+      "<p {class:\"#{alt_text}\"}><img {src:#{href.escape}}></img></p>"
     end
 
     def block_code(code, language)
@@ -213,9 +216,9 @@ EOD
       if text[0] == '%'
         class_name = text[1...text.index(':')]
         lines[0] = lines.first[(lines.first.index(':') + 1)...lines.first.length].lstrip
-        "      children << p({className:\"#{class_name}\"}, #{lines.map{|l| l.escape}.join(',Hyalite.create_element(\'br\'),')})\n"
+        "      children << p({className:\"#{class_name}\"}, #{lines.map{|l| l.expand_tag}.join(',Hyalite.create_element(\'br\'),')})\n"
       else
-        "      children << p(nil, #{lines.map{|l| l.escape}.join(',Hyalite.create_element(\'br\'),')})\n"
+        "      children << p(nil, #{lines.map{|l| l.expand_tag}.join(',Hyalite.create_element(\'br\'),')})\n"
       end
     end
 
