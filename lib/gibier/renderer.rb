@@ -213,7 +213,7 @@ EOD
 
     def paragraph(text)
       lines = text.split(/  $/)
-      if text[0] == '%'
+      if text =~ /\A%\w+:/
         class_name = text[1...text.index(':')]
         lines[0] = lines.first[(lines.first.index(':') + 1)...lines.first.length].lstrip
         "      children << p({className:\"#{class_name}\"}, #{lines.map{|l| l.expand_tag}.join(',Hyalite.create_element(\'br\'),')})\n"

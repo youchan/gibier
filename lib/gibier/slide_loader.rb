@@ -52,6 +52,8 @@ module Gibier
       File.open("#{src_path(name)}/script.rb", "w+") do |f|
         f.write Tilt::StringTemplate.new(File.expand_path('../../../template/script.rb', __FILE__)).render(Object.new, name: name)
       end
+    rescue => e
+      p e
     end
 
     def self.src_path(name)
