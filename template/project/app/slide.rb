@@ -61,7 +61,7 @@ module Gibier
         end
       when :print
         Gibier.page_count.times.map do |i|
-          Object.const_get("Gibier::Page#{i}").el({visible: true, page_number: i, slide_height: height})
+          Object.const_get("Gibier::Page#{i}").el({visible: true, page_number: i, slide_height: height/Gibier.page_count})
         end
       end
     end

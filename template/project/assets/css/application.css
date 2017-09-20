@@ -93,6 +93,7 @@ body {
 
 .page p.large {
   text-align: center;
+  margin: 0;
 }
 
 .page p.large img {
