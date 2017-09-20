@@ -25,6 +25,12 @@ body {
   color: #fff;
 }
 
+.gibier .background-filter {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
 .slide {
   position: absolute;
   width: 960px;

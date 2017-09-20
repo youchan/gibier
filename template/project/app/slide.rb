@@ -173,17 +173,19 @@ module Gibier
       case @state[:mode]
       when :slide
         div({className: 'background'},
-          div({
-            className: 'slide',
-            style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
-            onKeyDown: -> (event) { handle_key_down(event) }
-          },
-            pages(SLIDE_HEIGHT * zoom)
-          ),
-          Gibier::TrackField.el({total_time: duration, start: @state[:start], page_number: @state[:page_number], page_count: Gibier.page_count}),
-          section({className: 'footer'}.merge(footer_style),
-            p({className: 'title'}, Gibier.title),
-            p({className: 'powered-by'}, "Powered by ", span({className: "hyalite"}, "Hyalite"))
+          div({className: 'background-filter'},
+            div({
+              className: 'slide',
+              style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
+              onKeyDown: -> (event) { handle_key_down(event) }
+            },
+              pages(SLIDE_HEIGHT * zoom)
+            ),
+            Gibier::TrackField.el({total_time: duration, start: @state[:start], page_number: @state[:page_number], page_count: Gibier.page_count}),
+            section({className: 'footer'}.merge(footer_style),
+              p({className: 'title'}, Gibier.title),
+              p({className: 'powered-by'}, "Powered by ", span({className: "hyalite"}, "Hyalite"))
+            )
           )
         )
       when :print
