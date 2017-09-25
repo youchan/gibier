@@ -61,6 +61,29 @@ body {
   width: 100%;
 }
 
+.slide-controll {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.slide-controll .page-back {
+  position: absolute;
+  width: 25%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+.slide-controll .page-forward {
+  position: absolute;
+  width: 25%;
+  height: 100%;
+  left: 75%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
 .page p.icon {
   margin: 0;
   position: absolute;

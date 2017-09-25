@@ -101,13 +101,21 @@ module Gibier
       $window.location.assign("#{$window.location.to_s.sub(/#\d+$/, '')}##{num}")
     end
 
+    def page_back
+      page_to(@state[:page_number] - 1) if @state[:page_number] > 0
+    end
+
+    def page_forward
+      page_to(@state[:page_number] + 1) if @state[:page_number] < Gibier.page_count
+    end
+
     def handle_key_down(event)
       keycode = event.code
       case keycode
       when 39,34
-        page_to(@state[:page_number] + 1) if @state[:page_number] < Gibier.page_count
+        page_forward
       when 37,33
-        page_to(@state[:page_number] - 1) if @state[:page_number] > 0
+        page_back
       when 83,66
         unless @state[:start]
           set_state(start: Time.now)
@@ -174,17 +182,21 @@ module Gibier
       when :slide
         div({className: 'background'},
           div({className: 'background-filter'},
-            div({
-              className: 'slide',
-              style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
-              onKeyDown: -> (event) { handle_key_down(event) }
-            },
-              pages(SLIDE_HEIGHT * zoom)
-            ),
-            Gibier::TrackField.el({total_time: duration, start: @state[:start], page_number: @state[:page_number], page_count: Gibier.page_count}),
-            section({className: 'footer'}.merge(footer_style),
-              p({className: 'title'}, Gibier.title),
-              p({className: 'powered-by'}, "Powered by ", span({className: "hyalite"}, "Hyalite"))
+            div({class: 'slide-controll'},
+              div({class: 'page-back', onClick: -> { page_back }}),
+              div({class: 'page-forward', onClick: -> { page_forward }}),
+              div({
+                className: 'slide',
+                style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
+                onKeyDown: -> (event) { handle_key_down(event) }
+              },
+                pages(SLIDE_HEIGHT * zoom)
+              ),
+              Gibier::TrackField.el({total_time: duration, start: @state[:start], page_number: @state[:page_number], page_count: Gibier.page_count}),
+              section({className: 'footer'}.merge(footer_style),
+                p({className: 'title'}, Gibier.title),
+                p({className: 'powered-by'}, "Powered by ", span({className: "hyalite"}, "Hyalite"))
+              )
             )
           )
         )
