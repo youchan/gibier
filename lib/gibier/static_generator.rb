@@ -41,13 +41,12 @@ module Gibier
     def build(name, filename)
       builder = Opal::Builder.new
 
-      use_gem(builder, 'opal-browser', 'opal')
       use_gem(builder, 'opal-router', 'opal')
-      use_gem(builder, 'hyalite', 'client')
 
       builder.append_paths './app'
+      builder.use_gem 'hyalite'
+      builder.use_gem 'opal-websocket'
       builder.use_gem 'gibier'
-      builder.use_gem 'paggio'
       builder.build "./app/slides/#{name}/app.rb"
 
       File.open(filename, 'w') do |file|

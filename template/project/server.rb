@@ -20,6 +20,7 @@ class Server < Sinatra::Base
       server.append_path 'assets'
 
       Opal.use_gem 'opal-router'
+      Opal.use_gem 'opal-websocket'
       Opal.use_gem 'hyalite'
       Opal.use_gem 'gibier'
 

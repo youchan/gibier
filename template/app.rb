@@ -1,8 +1,7 @@
 require 'slide'
 require 'page_base'
 require 'slides/#{name}/pages'
-require 'browser/socket'
-require 'browser/location'
+require 'opal/websocket'
 
 Gibier.slide_name = '#{name}'
 Gibier.gh_pages = `window.ghPages`
@@ -15,7 +14,7 @@ module App
 end
 
 $document.ready do
-  ws = Browser::Socket.new("ws://\#{$window.location.host}/push_notification/start/slide/#{name}") unless Gibier.gh_pages
+  ws = Opal::WebSocket.new("ws://\#{`window.location.host`}/push_notification/start/slide/#{name}") unless Gibier.gh_pages
 
   $window.on(:resize) do
     App.render(ws)
