@@ -180,8 +180,8 @@ module Gibier
         div({className: 'background'},
           div({className: 'background-filter'},
             div({class: 'slide-controll'},
-              div({class: 'page-back', onClick: -> { page_back }}),
-              div({class: 'page-forward', onClick: -> { page_forward }}),
+              div({class: 'page-back', onClick: -> { page_back }, onTouchStart: -> { page_back }}),
+              div({class: 'page-forward', onClick: -> { page_forward }, onTouchStart: -> { page_forward }}),
               div({
                 className: 'slide',
                 style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
