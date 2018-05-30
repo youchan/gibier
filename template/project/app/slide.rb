@@ -1,10 +1,11 @@
 require 'hyalite'
 require 'opal-router'
 require 'track_field'
+require 'ostruct'
 
 module Gibier
-  SLIDE_WIDTH = 960
-  SLIDE_HEIGHT = 720
+  SLIDE_WIDTH = 1920
+  SLIDE_HEIGHT = 1080
 
   def self.page_count
     @page_count
@@ -49,11 +50,11 @@ module Gibier
   class Slide
     include Hyalite::Component
 
-    def pages(height)
+    def pages(rect)
       case @state[:mode]
       when :slide
         Gibier.page_count.times.map do |i|
-          Object.const_get("Gibier::Page#{i}").el({visible: @state[:page_number] == i, page_number: i, slide_height: height})
+          Object.const_get("Gibier::Page#{i}").el({visible: @state[:visible] || @state[:page_number] == i, page_number: i, rect: rect})
         end
       when :print
         Gibier.page_count.times.map do |i|
@@ -109,9 +110,9 @@ module Gibier
     def handle_key_down(event)
       keycode = event.code
       case keycode
-      when :Space, :ArrowRight, :ArrowUp
+      when :Space, :ArrowRight, :ArrowDown, :PageDown
         page_forward
-      when :Backspace, :ArrowLeft, :ArrowDown
+      when :Backspace, :ArrowLeft, :ArrowUp, :PageUp
         page_back
       when :KeyS, :KeyB
         unless @state[:start]
@@ -163,15 +164,16 @@ module Gibier
     end
 
     def render
-      follow_height = $window.height / $window.width < SLIDE_HEIGHT / SLIDE_WIDTH
-      if follow_height
-        zoom = $window.height.to_f / SLIDE_HEIGHT * 0.98
+      if $window.height / $window.width < SLIDE_HEIGHT / SLIDE_WIDTH
+        zoom = $window.height.to_f / SLIDE_HEIGHT
       else
-        zoom = $window.width.to_f / SLIDE_WIDTH * 0.98
+        zoom = $window.width.to_f / SLIDE_WIDTH
       end
 
       top = ($window.height / zoom - SLIDE_HEIGHT) / 2
       left = ($window.width / zoom - SLIDE_WIDTH) / 2
+
+      rect = OpenStruct.new(top: top, left: left, width: SLIDE_WIDTH, height: SLIDE_HEIGHT, zoom: zoom)
 
       footer_style = @state[:page_number] == 1 || !@state[:footer_visible] ? {style: {display: 'none'}} : {}
 
@@ -184,10 +186,9 @@ module Gibier
               div({class: 'page-forward', onClick: -> { page_forward }, onTouchStart: -> { page_forward }}),
               div({
                 className: 'slide',
-                style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
                 onKeyDown: -> (event) { handle_key_down(event) }
               },
-                pages(SLIDE_HEIGHT * zoom)
+                pages(rect)
               ),
               Gibier::TrackField.el({total_time: duration, start: @state[:start], page_number: @state[:page_number], page_count: Gibier.page_count}),
               section({className: 'footer'}.merge(footer_style),
@@ -205,7 +206,7 @@ module Gibier
             top += SLIDE_HEIGHT * zoom
             div({
               className: 'wrap-page',
-              style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
+              style: {zoom: zoom, width: "#{SLIDE_WIDTH}px", height: "#{SLIDE_HEIGHT}px", top: "#{top}px", left: "#{left}px"},
             }, page)
           end
         )

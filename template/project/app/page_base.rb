@@ -1,7 +1,8 @@
+require_relative './page_background'
+
 module Gibier
   class PageBase
     include Hyalite::Component
-    include Hyalite::Component::ShortHand
 
     def initialize
       @height = 0
@@ -27,10 +28,6 @@ module Gibier
       "page_#{@props[:page_number]}"
     end
 
-    def style
-      {top: @state[:top]}.merge(@props[:visible] ? {display: 'block'} : {display: 'none'})
-    end
-
     def header
       nil
     end
@@ -40,7 +37,16 @@ module Gibier
     end
 
     def render
-      section({className: "page #{page_class_name}", style: style}, header, content)
+      rect = @props[:rect]
+      container_style = {zoom: rect.zoom, top: "#{rect.top}px", left: "#{rect.left}px", width: "#{rect.width}px", height: "#{rect.height}px"}
+      display = @props[:visible] ? 'block' : 'none'
+      section({class: "page #{page_class_name}", style: {width: "#{$window.width}px", height: "#{$window.height}px", display: display}},
+        div({class: 'page-container', style: container_style},
+          div({class: 'page-header'}, header),
+          div({class: 'page-content'}, content)
+        ),
+        PageBackground.el({zoom: rect.zoom, page_number: @props[:page_number]})
+      )
     end
   end
 end

@@ -22,7 +22,7 @@ class String
 end
 
 module Gibier
-  class Renderer < Redcarpet::Render::Base
+  class Renderer < Redcarpet::Render::HTML
     def self.create(name)
       Class.new(Renderer) do
         def self.page_name
@@ -58,8 +58,8 @@ module Gibier
 
       # span-level calls
       :autolink,
-      :underline, :raw_html,
-      :triple_emphasis, :strikethrough,
+      :underline,
+      :triple_emphasis,
       :superscript, :highlight,
 
       # footnotes
@@ -203,12 +203,28 @@ EOD
       "      children << code({ dangerouslySetInnerHTML: { __html: %q{#{html}} } })\n"
     end
 
-    def emphasis(*args)
-      "# #{args}"
+    def raw_html(html)
+      html
     end
 
-    def double_emphasis(*args)
-      "<strong>#{args.first}</strong>"
+    def emphasis(text)
+      "<i>#{text}</i>"
+    end
+
+    def double_emphasis(text)
+      "<strong>#{text}</strong>"
+    end
+
+    def stikethrough(text)
+      "<s>#{text}</s>"
+    end
+
+    def codespan(code)
+      "<code>#{code}</code>"
+    end
+
+    def normal_text(text)
+      text
     end
 
     def paragraph(text)
