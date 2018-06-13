@@ -16,7 +16,7 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  font-size: 32px;
+  font-size: 40px;
 }
 
 .gibier .background {
@@ -33,14 +33,10 @@ body {
 
 .slide {
   position: absolute;
-  width: 960px;
-  height: 720px;
   margin: 0 auto;
 }
 
 .wrap-page {
-  width: 960px;
-  height: 720px;
   margin: 0 auto;
   color: #000;
   background-color: #fff;
@@ -55,10 +51,35 @@ body {
 }
 
 .slide .page {
+  position: absolute;
+}
+
+.slide .page-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide .page-container {
+  position: absolute;
+}
+
+.slide .page-header {
+  position: absolute;
+  width: 100%;
+  margin: 1em 0;
+  z-index: 103;
+}
+
+.slide .page-content {
   top: 50%;
   transform: translateY(-50%);
   position: absolute;
-  width: 100%;
+  width: 80%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 104;
 }
 
 .slide-controll {
@@ -71,7 +92,7 @@ body {
   position: absolute;
   width: 25%;
   height: 100%;
-  z-index: 10;
+  z-index: 101;
   background-color: rgba(0, 0, 0, 0);
 }
 
@@ -80,7 +101,7 @@ body {
   width: 25%;
   height: 100%;
   left: 75%;
-  z-index: 10;
+  z-index: 102;
   background-color: rgba(0, 0, 0, 0);
 }
 
@@ -114,19 +135,113 @@ body {
   background-repeat: no-repeat;
 }
 
-.page img {
-  width: 1em;
+.page img.inline {
+  height: 2rem;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
+.page .inline {
+  margin: 0 8px;
+  float: left;
+}
+
+.page p.huge {
+  text-align: center;
+  font-size: 2.6em;
+  font-weight: bold;
+  margin: 0;
+}
+
 .page p.large {
   text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
   margin: 0;
 }
 
 .page p.large img {
   width: 80%;
+}
+
+.page p.middle {
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 4em;
+}
+
+.page p.middle img {
+  width: 60%;
+}
+
+.page p.portlait {
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.page p.portlait img {
+  width: 40%;
+  margin-top: 4em;
+}
+
+.page p.portlait-left {
+  text-align: left;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.page p.portlait-left img {
+  width: 38%;
+  margin-top: 12%;
+  float: left;
+}
+
+.page .right ~ * {
+  position: relative;
+  float: left;
+  margin-top: 10em;
+  margin-left: 2em;
+  width: 20em;
+}
+
+.page p.w90 {
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.page p.w90 img {
+  width: 90%;
+}
+
+.page p.w70 {
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 4em;
+}
+
+.page p.w70 img {
+  width: 70%;
+}
+
+.page p.w50 {
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 4em;
+}
+
+.page p.w50 img {
+  width: 50%;
 }
 
 h1 {
