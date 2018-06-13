@@ -13,7 +13,8 @@ module Gibier
         generate_page(name, assets_path)
       end
 
-      convert_html(File.expand_path('../../../template/gh_pages/index.haml', __FILE__), "docs/index.html", slides: @slide_loader.slides)
+      convert_html(File.expand_path('../views/index.haml', @data_dir), "docs/index.html", slides: @slide_loader.slides)
+      FileUtils.cp_r(File.expand_path('../assets', @data_dir), "docs")
     end
 
     def generate_page(name, assets_path = 'assets', slide_dir = nil)
@@ -22,8 +23,8 @@ module Gibier
 
       slide_dir =  "#{@target_dir}/#{name}" unless slide_dir
       FileUtils.mkdir_p slide_dir
-      slide_haml = File.expand_path('../../../template/gh_pages/slide.haml', __FILE__)
-      convert_html(slide_haml, "#{slide_dir}/index.html", slide_name: name, assets_path: assets_path)
+      slide_haml = File.expand_path('../views/slide.haml', @data_dir)
+      convert_html(slide_haml, "#{slide_dir}/index.html", slide_name: name, static: true, assets_path: assets_path)
 
       assets_dir = "#{@target_dir}/assets/#{name}"
       FileUtils.mkdir_p assets_dir

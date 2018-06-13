@@ -45,6 +45,7 @@ class Server < Sinatra::Base
 
   get '/:slide_name' do
     @slide_name = params['slide_name']
+    @assets_path = 'assets'
     haml :slide
   end
 

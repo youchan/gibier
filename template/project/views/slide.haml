@@ -4,9 +4,9 @@
     %meta{charset:"utf-8"}
     %meta{name:"viewport", content:"width=device-width,initial-scale=1.0,minimum-scale=1.0"}
     %title= @slide_name
-    %link{rel:"stylesheet", href:"assets/css/application.css"}
-    %link{rel:"stylesheet", href:"assets/#{@slide_name}/css/custom.css"}
-    %link{rel:"stylesheet", href:"assets/css/highlight.css"}
+    %link{rel:"stylesheet", href:"#{@assets_path}/css/application.css"}
+    %link{rel:"stylesheet", href:"#{@assets_path}/#{@slide_name}/css/custom.css"}
+    %link{rel:"stylesheet", href:"#{@assets_path}/css/highlight.css"}
 
   %body
     %section.gibier
@@ -14,4 +14,12 @@
     :javascript
       window.slideName = '#{@slide_name}'
       window.assetsPath = 'assets/#{@slide_name}'
-    = ::Opal::Sprockets.javascript_include_tag("slides/#{@slide_name}/app", sprockets: settings.opal.sprockets, prefix: 'assets', debug: true)
+
+    - if @static
+      :javascript
+        window.ghPages = true;
+
+      %script{type:"text/javascript", src:"#{@assets_path}/#{@slide_name}/javascripts/application.js"}
+
+    - else
+      = ::Opal::Sprockets.javascript_include_tag("slides/#{@slide_name}/app", sprockets: settings.opal.sprockets, prefix: 'assets', debug: true)
