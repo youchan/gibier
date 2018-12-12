@@ -46,6 +46,16 @@ render as shown on the next page
 
 default font
 
+## Link
+
+```
+* [Link](http://youchan.org/gibier/sample/)
+* http://youchan.org/gibier/sample/
+```
+
+* [Link](http://youchan.org/gibier/sample/)
+* http://youchan.org/gibier/sample/
+
 ## Image
 
 ```

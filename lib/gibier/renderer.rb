@@ -8,7 +8,8 @@ class String
   end
 
   def expand_tag
-    m = /\A(?<head>.*?)(?<body><(?<tag>\w+)( (?<attrs>{(\w+:.+?)(, \w:.+?)*}))?>(?<inner>.*?)<\/\k<tag>>)(?<tail>.*?)\z/.match(self)
+    str = self.gsub(/<br>\n/, '<br></br>')
+    m = /\A(?<head>.*?)(?<body><(?<tag>\w+)( (?<attrs>{(\w+:.+?)(, \w:.+?)*}))?>(?<inner>.*?)<\/\k<tag>>)(?<tail>.*?)\z/.match(str)
     if m
       arr = []
       arr << m[:head].escape unless m[:head].empty?
@@ -57,7 +58,6 @@ module Gibier
       :block_quote,
 
       # span-level calls
-      :autolink,
       :underline,
       :triple_emphasis,
       :superscript, :highlight,
@@ -175,6 +175,10 @@ EOD
     def link(link, title, content)
       link or return
       "<a {href:#{link.escape}, target:\"_blank\"}>#{content}</a>"
+    end
+
+    def autolink(url, type)
+      "<a {href:#{url.escape}, target:\"_brank\"}>#{url}</a>"
     end
 
     def image(link, title, alt_text)
