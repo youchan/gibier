@@ -14,7 +14,7 @@ class Server < Sinatra::Base
   end
 
   configure do
-    opal = Opal::Server.new do |server|
+    opal = Opal::Sprockets::Server.new do |server|
       server.append_path 'data'
       server.append_path 'app'
       server.append_path 'assets'
