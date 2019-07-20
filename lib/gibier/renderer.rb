@@ -243,7 +243,19 @@ EOD
     end
 
     def table(header, body)
-      "#{header}#{body}"
+      code = <<-CODE
+        children << table(nil,
+          tr(nil,
+            *[
+              #{header.split("\t").map{|c| "th(nil, #{c.expand_tag})"}.join(",\n")}
+            ]
+          ),
+          *[
+            #{body.split("\n").map{|row| "tr(nil, [#{row.split("\t").map{|c| "td(nil, #{c.expand_tag})"}.join(", ")}])" }.join(",\n")}
+          ]
+        )
+      CODE
+      code
     end
 
     def table_row(content)

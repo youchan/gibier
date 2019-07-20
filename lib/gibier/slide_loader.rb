@@ -33,7 +33,7 @@ module Gibier
     def self.load_slide(name)
       File.open("#{src_path(name)}/pages.rb", "w+") do |f|
         data = File.read("data/#{name}/slide.md")
-        markdown = Redcarpet::Markdown.new(Gibier::Renderer.create(name), autolink: true, fenced_code_blocks: true)
+        markdown = Redcarpet::Markdown.new(Gibier::Renderer.create(name), autolink: true, fenced_code_blocks: true, tables: true)
         f.write markdown.render(data)
       end
 

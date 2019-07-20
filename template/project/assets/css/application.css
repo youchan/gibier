@@ -153,6 +153,12 @@ body {
   margin: 0;
 }
 
+.page p.small {
+  text-align: left;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
 .page p.large {
   text-align: center;
   font-size: 1.6em;
@@ -169,7 +175,7 @@ body {
   font-size: 1.6em;
   font-weight: bold;
   margin: 0;
-  margin-top: 4em;
+  margin-top: 1rem;
 }
 
 .page p.middle img {
@@ -209,6 +215,27 @@ body {
   width: 20em;
 }
 
+.page p.portlait-right {
+  text-align: right;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.page p.portlait-right img {
+  width: 30%;
+  margin-top: 12%;
+  float: right;
+}
+
+.page .left ~ * {
+  position: relative;
+  float: left;
+  margin-top: 12%;
+  margin-left: 2em;
+  width: 60%;
+}
+
 .page p.w90 {
   text-align: center;
   font-size: 1.6em;
@@ -225,7 +252,6 @@ body {
   font-size: 1.6em;
   font-weight: bold;
   margin: 0;
-  margin-top: 4em;
 }
 
 .page p.w70 img {
@@ -237,11 +263,21 @@ body {
   font-size: 1.6em;
   font-weight: bold;
   margin: 0;
-  margin-top: 4em;
 }
 
 .page p.w50 img {
   width: 50%;
+}
+
+.page p.w30 {
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.page p.w30 img {
+  width: 30%;
 }
 
 h1 {
@@ -361,4 +397,19 @@ a:active {
 
 .duration {
   display: none;
+}
+
+table{
+  border-collapse:collapse;
+  margin:0 auto;
+}
+td,th{
+  padding:10px;
+}
+th{
+  color:#fff;
+  background:#005ab3;
+}
+table tr:nth-child(odd){
+  background:#e6f2ff;
 }
