@@ -1,5 +1,5 @@
 require 'rouge'
-require 'fssm'
+require 'listen'
 require 'eventmachine'
 require 'redcarpet'
 
@@ -67,13 +67,10 @@ module Gibier
     def add_slide(name)
       init_slide(name)
 
-      EM.defer do
-        FSSM.monitor("data/#{name}", %w(slide.md script.md)) do
-          update {|base, relative| Gibier::SlideLoader.load_slide(name) }
-          delete {|base, relative|}
-          create {|base, relative|}
-        end
+      listener = Listen.to("data/#{name}") do |modified, added, removed|
+        Gibier::SlideLoader.load_slide(name)
       end
+      listener.start
     end
   end
 end

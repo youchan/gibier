@@ -31,7 +31,7 @@ Its purpose are one of examples for Hyalite and also intend to be used as pratic
   spec.add_runtime_dependency 'redcarpet'
   spec.add_runtime_dependency 'unindent'
   spec.add_runtime_dependency 'rouge', "~> 1.10"
-  spec.add_runtime_dependency 'fssm'
+  spec.add_runtime_dependency 'listen', "~> 3.1"
   spec.add_runtime_dependency 'eventmachine'
 
   spec.add_runtime_dependency 'rack', "~> 1.6"
